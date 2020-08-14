@@ -1,0 +1,17 @@
+<%- include('partials/header') -%>
+
+
+
+<div class=" container2 products-div">
+    <% products.map(p=> {%>
+        <div class="item-div">
+            <div class="img-div">
+               <a href="/<%=p.id%>"><img src="/uploads/<%=p.image%>" alt=""></a>
+            </div>
+            <a  href="/<%=p.id%>"><h2 class="product-name"><%=p.name%></h2></a>
+            
+            
+        </div>
+            <%})%>
+    
+</div>

@@ -1,0 +1,64 @@
+<%- include("partials/header")-%>
+<div class="container2">
+
+
+    <%if(msg){%>
+    <h2 class="result"><%=msg%></h2>
+    <%}%>
+<h4 class="category"><%=product.category%></h4>
+    <div class="products-div products-div2">
+        <div class="img-div">
+            <img src="/uploads/<%=product.image%>" alt="">
+
+        </div>
+        <div>
+
+            <h2 class="product-name"><%=product.name%></h2>
+            <h3 class="price"><%=product.price%></h3>
+            <%if(userInfo && !userInfo.isAdmin){%>
+            <a class="link-block" href="/<%=product.id%>/favorite">Favorite</a>
+            <%}%>
+    <% if(product.qty<=5) {%>
+            <h2 class="result green">Hurry up only <%= product.qty%> is left</h2>
+            <%}%>
+        <form action="/add/<%=product.name%>" method="post">
+
+            <label for="qty">Choose your qty</label>
+            <select name="qty" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+
+            </select>
+            <button type="submit">Add to cart</button>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="comments">
+        <h2>Reviews</h2>
+        <form class="comment-form" action="/<%=product.id%>/review" method="POST">
+            <input class="input" type="text" name="content" id="" placeholder="Write a review">
+        </form>
+        <div>
+
+            <% product.reviews.forEach(c=>{ %>
+            <div class="comment-div">
+                <div class="content-comments">
+                    <span class="user-comment">UserName:  <%= c.user.name%></span>
+                    <span class="user-name">Comment :  <%=c.content%></span>
+                    <%= console.log(c)%>
+                    <% if(c.user.id == userInfo.id) { %>
+                    <a class="edit-comment link-block" href="/<%=product.id%>/reviews/<%=c.id%>/edit">Edit</a>
+                    <% } %>
+                    <% if(c.user.id== userInfo.id) { %>
+                    <a class="delete-comment link-block" href="/<%=product.id%>/reviews/<%=c.id%>/delete">delete</a>
+                    <% } %>
+                    <a class="comment-like link-block" href="/<%=product.id%>/<%=c.id%>/like">Like:<%=c.likes%></a>
+                </div>
+            </div>
+            <%})%>
+
+        </div>
+    </div>
+</div>

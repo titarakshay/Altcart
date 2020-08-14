@@ -1,0 +1,35 @@
+<%- include('../partials/header') -%>
+<div class="add-product container">
+    <a class="link-block" href="/admin/allproducts">Back</a>
+    <h2 style="margin: 30px 40px;">Update Product</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <input class="input" type="text" name="name" id="" placeholder="product name" value="<%=product.name%>">
+        <input class="input" type="number" name="qty" id="" placeholder="enter quantity" value="<%=product.qty%>">
+        <input class="input" type="number" name="price" id="" placeholder="Price" value="<%=product.price%>">
+        <label style="display: block;margin: 10px 40px;" for="category">Choose your category:</label>
+
+        <select style="display: block;margin: 10px 40px;width: 200px;height: 150px;" multiple name="category" id="">
+            <option value="electronic">Electronic</option>
+            <option value="mobiles">Mobiles</option>
+            <option value="laptops">Laptops</option>
+            <option value="clothing">Clothing</option>
+            <option value="shirts">Shirts</option>
+            <option value="Tshirts">Tshirts</option>
+            <option value="Jeans">Jeans</option>
+            <option value="footwear">Footwear</option>
+            <option value="flipflops">Filpflops</option>
+            <option value="sandels">Sandels</option>
+            <option value="shoes">Shoes</option>
+            <option value="beuaty">Skin & care</option>
+        </select>
+        <span style="margin: 10px 40px;"> Add an image</span>
+        <input class="input" class="productPic" type="file" name="image" id="" value="<%=product.image%>">
+        <div style="margin: 20px 40px;">
+
+            <button class="btn btn-primary" type="submit">update</button>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

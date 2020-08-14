@@ -1,0 +1,23 @@
+<%- include('partials/header')-%>
+
+<div class=" products-div container2">
+
+
+
+<% wishlist.favoriteItems.map(p=>{%>
+    <div class="item-div">
+        <a class="link-block grey" href="/<%=p.id%>/unfavorite">remove from wishlist</a>
+        <h4 class="category">Categories:   <%=p.category%></h4>
+        <div class="img-div">
+            <a href="/<%=p.id%>"><img src="/uploads/<%=p.image%>" alt=""></a>
+        </div>
+    
+        <div>
+            <h2 class="product-name"><%=p.name%></h2>
+            <h3 class="price">Price:<%= p.price%></h3>
+        </div>
+    </div>
+   
+
+    <%})%>
+</div>

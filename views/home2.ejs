@@ -1,0 +1,79 @@
+<%- include("partials/header")-%>
+<%if(userInfo.email == 'titarakshay@gmail.com'){%>
+<a href="/add">Add products</a>
+<a href="/userlist">UserList</a>
+<%}%>
+<a href="/users/logout">Logout</a> 
+<%if(!(userInfo.email == 'titarakshay@gmail.com')){%>
+    <a href="/<%=userInfo.id%>/mycart">My Cart</a>
+    <a href="/<%=userInfo.id%>/wishlist">My Wishlist</a>
+<%}%>
+<div class="search-div">
+    <form action="/search" method="post">
+        <input style="width: 300px;" type="text" name="search" id="" placeholder="Search by product or category">
+        <button class="btn btn-danger" type="submit">Search</button>
+    </form>
+</div>
+<%if(msg){%>
+<h2><%=msg%></h2>
+<%}%>
+<div class="category-div">
+    <% list.forEach(c=>{%>
+        <h4><a href="/<%=c%>"><%=c%></a></h4>
+        <%})%>
+</div>
+<div class="products-div">
+    <% products.map(p=> {%>
+<div style="width: 70px;height: 80px; margin-top: 50px;">
+    <img src="/uploads/<%=p.image%>" alt="">
+</div>
+<div style="margin-top:150px ;">
+    <%if(userInfo.email == 'titarakshay@gmail.com'){%>
+    <a href="/<%=p.id%>/delete">delete</a>
+    <a href="/<%=p.id%>/edit">Edit</a>
+    <%}%>
+            <h2><%=p.name%></h2>
+    <h3><%=p.price%></h3>
+    <h4><%=p.category%></h4>
+    <%if(!(userInfo.email == 'titarakshay@gmail.com')){%>
+    <a href="/<%=p.id%>/favorite">Favorite</a>
+    <form action="/add/<%=p.name%>" method="post">
+
+        <label for="qty">Choose your qty</label>
+        <select name="qty" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+
+        </select>
+        <button type="submit">Add to cart</button>
+    </form>
+    <%}%>
+    <div class="comments">
+        <h2>Reviews</h2>
+        <form class="comment-form" action="/<%=p.id%>/review" method="POST">
+            <input type="text" name="content" id="" placeholder="Write a review">
+        </form>
+        <div>
+
+            <% p.reviews.forEach(c=>{ %>
+            <div class="comment-div">
+                <div class="content-comments">
+                    <span><%= c.user.name%></span>
+                    <span><%=c.content%></span>
+                    <%= console.log(c)%>
+                    <% if(c.user.id == userInfo.id) { %>
+                    <a class="edit-comment" href="/reviews/<%=c.id%>/edit">Edit</a>
+                    <% } %>
+                    <% if(c.user.id== userInfo.id) { %>
+                    <a class="delete-comment" href="/reviews/<%=c.id%>/delete">delete</a>
+                    <% } %>
+                    <a class="comment-like" href="/<%=c.id%>/like">Like:<%=c.likes%></a>
+                </div>
+            </div>
+            <%})%>
+
+        </div>
+    </div>
+</div>
+<%})%>
+</div>

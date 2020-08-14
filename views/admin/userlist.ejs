@@ -1,0 +1,19 @@
+
+<%- include('../partials/header') -%>
+
+
+<div class="container">
+    <% users.forEach(u=>{%>
+        <div style="margin-top: 20px;">
+            <span class="user-name">UserName: <%= u.name%></span>
+            <span class="user-name">Email: <%= u.email%></span>
+            <% if(u.block){%>
+                <a class="link-block" href="/admin/<%=u.id%>/unblock">Unblock</a>
+            <%}else{%>
+            <a class="link-block" href="/admin/<%=u.id%>/block">Block</a>
+            <%}%>
+        </div>
+      
+    <%})%>
+</div>
+

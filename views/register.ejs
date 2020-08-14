@@ -1,0 +1,20 @@
+<%- include('partials/header')-%>
+<div class="form-group login-div">
+    <div class="login-heading">
+
+        <h2>Create A New User</h2>
+    </div>
+<form action="/users/register" method="post">
+    <input class="input" type="text" name="name" id="" placeholder="Enter Your Name">
+    <input class="input" type="email" name="email" id="" placeholder="Enter Your Email">
+    <input class="input" type="password" name="password" id="" placeholder="Enter Your Password">
+    <% if(msg) {%>
+        <h2><%= msg%></h2>
+    <%}%>
+    <div class="login-btns">
+
+        <button class="btn btn-success" class="input" type="submit">Create</button>
+        <button class="btn btn-light" type="reset">Reset</button>
+    </div>
+</form>
+</div>

@@ -1,0 +1,28 @@
+<%- include('partials/header')-%>
+<div class="container2">
+
+
+
+<%if(msg){%>
+    <h2 class="result"><%=msg%></h2>
+    <%}%>
+
+ 
+    
+    <div class="products-div">
+        <% products.map(p=> {%>
+            <div class="item-div">
+                <div class="img-div">
+                    <a href="/<%=p.id%>"><img src="/uploads/<%=p.image%>" alt=""></a>
+                 </div>
+                
+                     <a class="product-name" href="/<%=p.id%>"><h2><%=p.name%></h2></a>
+                     <h3 class="price">Price :<%= p.price%></h3>
+                     <h4 class="category">Categories: <%=p.category%></h4>
+
+            </div>
+        
+        <%})%>
+    </div>
+
+</div>
