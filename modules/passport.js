@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.ClientID,
       clientSecret: process.env.Client_Secret,
-      callbackURL: "/auth/github/callback",
+      callbackURL: "https://altcart-app.herokuapp.com/auth/github/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       // user create or find

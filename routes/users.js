@@ -13,7 +13,7 @@ var smtpTransport = require("nodemailer-smtp-transport");
 router.post("/:userId/verify", async (req, res, next) => {
   try {
     var user = await User.findById(req.params.userId);
-    
+
     console.log(user.code == req.body.code);
     if (req.body.code == user.code) {
       var updateuser = await User.findByIdAndUpdate(user.id, {
@@ -36,31 +36,32 @@ router.post("/:userId/code", async (req, res, next) => {
     var user = await User.findById(req.params.userId);
     let list = await Product.distinct("category");
     var cart = await Cart.findOne({ userId: req.user.id });
- 
+
     if (req.body.code == user.code) {
-      res.render('password',{user,list,cart})
+      res.render("password", { user, list, cart });
     } else {
       req.flash("msg", "Wrong verification code");
       res.redirect("/");
     }
-  } catch(error){
-    next(error)
-  }})
-// post change password
-router.post('/:userId/password', async(req,res,next)=>{
-  try {
-    console.log(req.body)
-    var user = await User.findById(req.params.userId);
-   var updated = await user.changepassword(req.body.password);
-   var updateduser =await User.findOneAndUpdate(user.id,{password:updated});
-   req.flash('msg',"Password updated ")
-   res.redirect('/')
-
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
-
+});
+// post change password
+router.post("/:userId/password", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    var user = await User.findById(req.params.userId);
+    var updated = await user.changepassword(req.body.password);
+    var updateduser = await User.findOneAndUpdate(user.id, {
+      password: updated,
+    });
+    req.flash("msg", "Password updated ");
+    res.redirect("/");
+  } catch (error) {
+    next(error);
+  }
+});
 
 // get register page
 router.get("/register", async function (req, res, next) {
@@ -68,12 +69,13 @@ router.get("/register", async function (req, res, next) {
   var cart = await Cart.findOne({ userId: req.user.id });
 
   var msg = req.flash("msg");
-  res.render("register", { msg ,list,cart});
+  res.render("register", { msg, list, cart });
 });
 
 router.post("/register", async (req, res, next) => {
   try {
     console.log(req.body);
+
     var code = Math.floor(Math.random() * 1000000);
     var transporter = nodemailer.createTransport(
       smtpTransport({
@@ -108,7 +110,7 @@ router.post("/register", async (req, res, next) => {
       { $addToSet: { cart: cart.id } },
       { new: true }
     );
-    req.session.userId= user.id
+    req.session.userId = user.id;
 
     res.redirect("/home");
   } catch (error) {
@@ -117,17 +119,17 @@ router.post("/register", async (req, res, next) => {
 });
 
 // get login page
-router.get("/login", async(req,res,next)=>{
+router.get("/login", async (req, res, next) => {
   try {
     let list = await Product.distinct("category");
-    let cart= {itemList:0}
-   
-    var msg= req.flash("msg")
-    res.render('login',{list,msg,cart})
+    let cart = { itemList: 0 };
+
+    var msg = req.flash("msg");
+    res.render("login", { list, msg, cart });
   } catch (error) {
     next(error);
   }
-})
+});
 
 // post on login
 router.post("/login", async (req, res, next) => {
@@ -156,20 +158,17 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-
-
-router.get('/forgot', async(req,res,next)=>{
+router.get("/forgot", async (req, res, next) => {
   try {
     let list = await Product.distinct("category");
     var cart = await Cart.findOne({ userId: req.user.id });
-    res.render('forgot',{list,cart});
-    
+    res.render("forgot", { list, cart });
   } catch (error) {
     next(error);
   }
-})
+});
 
-router.post('/forgot', async(req,res,next)=>{
+router.post("/forgot", async (req, res, next) => {
   try {
     let list = await Product.distinct("category");
     console.log(req.body);
@@ -200,13 +199,15 @@ router.post('/forgot', async(req,res,next)=>{
       }
     });
     req.body.code = code;
-    var user= await User.findOneAndUpdate({email:req.body.email},{code:req.body.code})
-    res.render('code',{user,list})
+    var user = await User.findOneAndUpdate(
+      { email: req.body.email },
+      { code: req.body.code }
+    );
+    res.render("code", { user, list });
   } catch (error) {
     next(error);
   }
-})
-
+});
 
 router.get("/logout", async (req, res, next) => {
   try {
