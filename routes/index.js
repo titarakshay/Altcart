@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var Product = require("../models/product");
+var Category = require("../models/categories");
 var User = require("../models/user");
 var auth = require("../middlewares/auth");
 var flash = require("connect-flash");
@@ -13,7 +14,7 @@ var Review = require("../models/review");
 
 router.get("/", async function (req, res, next) {
   try {
-    let list = await Product.distinct("category");
+    let list = await Category.distinct("category");
     let products = await Product.find({}).sort({ createdAt: -1 });
     var cart = await Cart.findOne({ userId: req.user.id });
     var msg = req.flash("msg");
