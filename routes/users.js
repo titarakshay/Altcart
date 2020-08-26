@@ -8,6 +8,43 @@ var nodemailer = require("nodemailer");
 var smtpTransport = require("nodemailer-smtp-transport");
 
 /* GET users listing. */
+//mail resend code
+router.get("/verify/:userid/resend", async (req, res, next) => {
+  try {
+    console.log("we are in");
+    var user = await User.findById(req.params.userid);
+    console.log(user, "we get");
+    let code = user.code;
+    var transporter = nodemailer.createTransport(
+      smtpTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        auth: {
+          user: process.env.Gmail_username,
+          pass: process.env.Gmail_password,
+        },
+      })
+    );
+
+    var mailOptions = {
+      from: process.env.Gmail_username,
+      to: user.email,
+      subject: `Altcart shopping verification`,
+      text: `Verification code is ${code}`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+    res.redirect("/home");
+  } catch (error) {
+    next(error);
+  }
+});
 
 // verify user mail
 router.post("/:userId/verify", async (req, res, next) => {

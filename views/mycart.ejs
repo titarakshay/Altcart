@@ -6,9 +6,9 @@
 <div class=" products-div container2">
 
 
-  
+
     <% mycart.map(p=>{%>
-        <div class="item-div">
+    <div class="item-div">
 
 
         <a class="link-block grey" href="/<%=p.id%>/deleteItem">remove</a>
@@ -20,18 +20,19 @@
         <div>
             <h2 class="product-name"><%=p.item.name%></h2>
             <a href="/qtyminus/<%=p.item.id%>" class="qty-plus">-</a>
-            <span class="qty ">Quantity:  <%= p.qty%></span>
-            <a href="/qtyadd/<%=p.item.id%>" class="qty-plus">+</a >
+            <span class="qty ">Quantity: <%= p.qty%></span>
+            <a href="/qtyadd/<%=p.item.id%>" class="qty-plus">+</a>
             <h3 class="price">Price :<%= p.item.price%></h3>
             <%  sub = (p.qty*p.item.price)%>
             <h4 class="qty">Subtotal:<%=sub%></h4>
         </div>
         <%  total = sub +total%>
     </div>
-        <%})%>
-       
+    <%})%>
+
 </div>
 <% if(total >=0){%>
 
 <h2 class="total">Total:<%= total%></h2>
+<a href="/<%=userInfo.id%>/checkout">Checkout</a>
 <%}%>

@@ -1,9 +1,10 @@
 <%- include('partials/header')-%>
 
 <%if(msg){%>
-    <h2><%=msg%></h2>
-    <%}%>
+<h2><%=msg%></h2>
+<%}%>
 <form action="/users/<%=user.id%>/verify" method="post">
-    <input type="text" name="code" id="" placeholder="Enter your code">
-    <button type="submit">submit</button>
+<input type="text" name="code" id="" placeholder="Enter your code">
+<button type="submit">submit</button>
 </form>
+<a href="/users/verify/<%=user.id%>/resend">Resend</a>

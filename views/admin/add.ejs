@@ -2,27 +2,27 @@
 <div class="add-product container">
     <a class="link-block" href="/admin/allproducts">Back</a>
 
-<h2 style="margin: 30px 40px;">Add Product On Website</h2>
-<form action="" method="post" enctype="multipart/form-data">
-    <input class="input" type="text" name="name" id="" placeholder="product name">
-    <input class="input" type="number" name="qty" id="" placeholder="enter quantity">
-    <input class="input" type="number" name="price" id="" placeholder="Price">
-    <label style="display: block;margin: 10px 40px;" for="category">Choose your category:</label>
+    <h2 style="margin: 30px 40px;">Add Product On Website</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <input class="input" type="text" name="name" id="" placeholder="product name">
+        <input class="input" type="number" name="qty" id="" placeholder="enter quantity">
+        <input class="input" type="number" name="price" id="" placeholder="Price">
+        <label style="display: block;margin: 10px 40px;" for="category">Choose your category:</label>
 
-        <select style="display: block;margin: 10px 40px;width: 200px;height: 150px;" multiple  name="category" id="">
+        <select style="display: block;margin: 10px 40px;width: 400px;height: 250px;" multiple name="category" id="">
             <% categories.forEach(category=>{%>
             <option value="<%=category.category%>"><%=category.category%></option>
             <%})%>
-            
+
         </select>
-    <span style="margin: 10px 40px;" > Add an image</span>
-    <input class="productPic" class="input" type="file" name="image" id="">
-    <div style="margin: 20px 40px;">
-        <button class="btn btn-primary" type="submit">Add</button>
-    <button class="btn btn-light" type="reset">Reset</button>
-    </div>
-    
-</form>
+        <span style="margin: 10px 40px;"> Add an image</span>
+        <input class="productPic" class="input" type="file" name="image" id="">
+        <div style="margin: 20px 40px;">
+            <button class="btn btn-primary" type="submit">Add</button>
+            <button class="btn btn-light" type="reset">Reset</button>
+        </div>
+
+    </form>
 
 
 
