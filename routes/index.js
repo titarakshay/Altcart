@@ -401,7 +401,7 @@ router.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect("/");
+    res.redirect("/admin/allproducts");
   }
 );
 module.exports = router;
