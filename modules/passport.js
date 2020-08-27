@@ -4,6 +4,7 @@ var flash = require("connect-flash");
 var Admin = require("../models/admin");
 var Cart = require("../models/cart");
 var nodemailer = require("nodemailer");
+var User = require("../models/user");
 var smtpTransport = require("nodemailer-smtp-transport");
 
 passport.use(
