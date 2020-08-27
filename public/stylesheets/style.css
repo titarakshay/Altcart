@@ -227,9 +227,17 @@ table {
 }
 .total {
   position: absolute;
-  right: 50px;
+  right: 190px;
   top: 60px;
   font-size: 26px;
+}
+.checkout {
+  right: 50px;
+  font-size: 20px;
+  color: black;
+  border: 1px solid black;
+  padding: 6px 9px;
+  background-color: transparent;
 }
 
 .comments {
@@ -255,7 +263,16 @@ table {
   font-weight: 900;
   margin: 0 16px;
 }
-
+/* verify code page */
+.msg-verify {
+  font-size: 24px;
+}
+.verify-form {
+  margin: 20px 0;
+}
+.resend-anchor {
+  font-size: 20px;
+}
 /* checkout form css */
 .row {
   display: -ms-flexbox; /* IE10 */
@@ -331,6 +348,9 @@ label {
 .price-checkout {
   float: right;
   color: grey;
+}
+.price2 {
+  float: none;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
