@@ -36,48 +36,7 @@ passport.use(
           }
         });
       } else {
-        var code = Math.floor(Math.random() * 1000000);
-        var transporter = nodemailer.createTransport(
-          smtpTransport({
-            service: "gmail",
-            host: "smtp.gmail.com",
-            auth: {
-              user: process.env.Gmail_username,
-              pass: process.env.Gmail_password,
-            },
-          })
-        );
-
-        var mailOptions = {
-          from: process.env.Gmail_username,
-          to: profile._json.email,
-          subject: `Verification code is ${code}`,
-          text: `Verification code is ${code}`,
-        };
-
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Email sent: " + info.response);
-          }
-        });
-
-        var user = await User.create({
-          email: profile._json.email,
-          name: profile.displayName,
-          image: profile._json.avatar_url,
-          code: code,
-        });
-        var cart = await Cart.create({ userId: user.id });
-        var user = await User.findByIdAndUpdate(
-          user.id,
-          { $addToSet: { cart: cart.id } },
-          { new: true },
-          (err, user) => {
-            return done(err, user);
-          }
-        );
+        return done(null, null);
       }
     }
   )
