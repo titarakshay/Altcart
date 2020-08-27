@@ -2,10 +2,6 @@ var passport = require("passport");
 var Githubstrategy = require("passport-github").Strategy;
 var flash = require("connect-flash");
 var Admin = require("../models/admin");
-var Cart = require("../models/cart");
-var nodemailer = require("nodemailer");
-var User = require("../models/user");
-var smtpTransport = require("nodemailer-smtp-transport");
 
 passport.use(
   new Githubstrategy(
@@ -15,7 +11,7 @@ passport.use(
       callbackURL: "https://altcart-app.herokuapp.com/auth/github/callback",
     },
     (accessToken, refreshToken, profile, done) => {
-      if (profile._json.email === "titarakshay@gmail.com") {
+      if (profile._json.email == "titarakshay@gmail.com") {
         // user create or find
         Admin.findOne({ githubId: profile.id }, (err, user) => {
           if (user) {
