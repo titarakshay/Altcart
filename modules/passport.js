@@ -14,7 +14,7 @@ passport.use(
       clientSecret: process.env.Client_Secret,
       callbackURL: "https://altcart-app.herokuapp.com/auth/github/callback",
     },
-    async (accessToken, refreshToken, profile, done) => {
+    (accessToken, refreshToken, profile, done) => {
       if (profile._json.email === "titarakshay@gmail.com") {
         // user create or find
         Admin.findOne({ githubId: profile.id }, (err, user) => {
