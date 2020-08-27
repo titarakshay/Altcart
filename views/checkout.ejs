@@ -75,7 +75,7 @@
     <div class="col-25">
         <div class="container">
             <h4>Cart
-                <span class="price" style="color:black">
+                <span class="price-checkout" style="color:black">
                     <i class="fa fa-shopping-cart"></i>
                     <b><%=mycart.length%></b>
                 </span>
@@ -83,11 +83,11 @@
             <% mycart.map(p=>{%>
             <p><a href="#"><%=p.item.name%></a><span style="margin-left: 20px;">X <%= p.qty%></span>
                 <%  sub = (p.qty*p.item.price)%>
-                <span class="price"><%=sub%></span></p>
+                <span class="price-checkout"><%=sub%></span></p>
             <%  total = sub +total%>
             <%})%>
             <hr>
-            <p>Total <span class="price" style="color:black"><b><%= total%></b></span></p>
+            <p>Total <span class="price-checkout" style="color:black"><b><%= total%></b></span></p>
         </div>
     </div>
 </div>

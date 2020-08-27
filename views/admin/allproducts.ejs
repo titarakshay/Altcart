@@ -2,30 +2,30 @@
 <div class="container2">
 
 
-<%if(msg){%>
-<h2 class="result"><%=msg%></h2>
-<%}%>
+    <%if(msg){%>
+    <h2 class="result"><%=msg%></h2>
+    <%}%>
 
 
 <div class="products-div">
 <% products.map(p=> {%>
-        <div class="item-div">
-            <h2 class="product-name"><%=p.name%></h2>
-            <div class="img-div">
-                <img src="/uploads/<%=p.image%>" alt="">
-            </div>
-            <div>
-                
-                <h4 class="category"><%=p.category%></h4>
-                <h3 class="price"> Price: <%=p.price%></h3>
-                <h4 class="qty">Stock : <%=p.qty%></h4>
-                <%if(userInfo.email == 'titarakshay@gmail.com'){%>
-                    <a class="link-block grey" href="/admin/<%=p.id%>/edit">Edit</a>
-                    <a class="link-block grey" href="/admin/<%=p.id%>/delete">Delete</a>
-                    <%}%>
+    <div class="item-div">
+        <h2 class="product-name"><%=p.name%></h2>
+        <div class="img-div">
+            <img src="/uploads/<%=p.image%>" alt="">
+        </div>
+        <div>
+
+            <h4 class="category"><%=p.category%></h4>
+            <h3 class="price price2"> Price: <%=p.price%></h3>
+            <h4 class="qty">Stock : <%=p.qty%></h4>
+            <%if(userInfo.email == 'titarakshay@gmail.com'){%>
+            <a class="link-block grey" href="/admin/<%=p.id%>/edit">Edit</a>
+            <a class="link-block grey" href="/admin/<%=p.id%>/delete">Delete</a>
+            <%}%>
             </div>
         </div>
                 <%})%>
-    
-</div>
-</div>
+
+        </div>
+    </div>
