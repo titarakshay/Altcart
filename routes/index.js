@@ -19,7 +19,7 @@ router.get("/", async function (req, res, next) {
     var cart = await Cart.findOne({ userId: req.user.id });
     var msg = req.flash("msg");
 
-    if (req.user.isAdmin) {
+    if (req.user.email === "titarakshay@gmail.com") {
       res.redirect("/admin/allproducts");
     }
     if (req.session.userId) {
