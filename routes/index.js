@@ -18,6 +18,7 @@ router.get("/", async function (req, res, next) {
     let products = await Product.find({}).sort({ createdAt: -1 });
     var cart = await Cart.findOne({ userId: req.user.id });
     var msg = req.flash("msg");
+
     if (req.user.isAdmin) {
       res.redirect("/admin/allproducts");
     }
@@ -141,7 +142,6 @@ router.post("/add/:productName", async (req, res, next) => {
             },
             { new: true }
           );
-          console.log(updateditem, "updated");
         }
         var cart = await Cart.findOneAndUpdate(
           { userId: req.user.id },
@@ -401,7 +401,6 @@ router.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/" }),
   (req, res) => {
-    req.flash(msg, "you are not admin you need to register");
     res.redirect("/");
   }
 );

@@ -36,7 +36,9 @@ passport.use(
           }
         });
       } else {
-        return done(null, null);
+        Admin.findOne({ githubId: profile.id }, (err, user) => {
+          return done(err, user);
+        });
       }
     }
   )
