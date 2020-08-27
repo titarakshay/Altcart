@@ -5,7 +5,7 @@
             <h2>User Login</h2>
         </div>
         <input class="input" type="email" name="email" id="" placeholder="Enter Your Email">
-        <input  class="input" type="password" name="password" id="" placeholder="Enter Your Password">
+        <input class="input" type="password" name="password" id="" placeholder="Enter Your Password">
         <% if(msg){ %>
         <h2 class="msg"> <%= msg %> </h2>
         <%}%>
@@ -13,7 +13,10 @@
 
             <button class="btn btn-success" type="submit">Login</button>
             <a   class="btn btn-secondary" href="/users/register">Register</a>
-            <a  class="btn btn-dark" href="/auth/github">Github</a>
+            <div style="margin-top: 30px;">
+                <h2 style="margin: 10px 0;color: red;font-size: 20px;">Admin Github Login</h2>
+                <a  class="btn btn-dark" href="/auth/github">Github</a>
+            </div>
         </div>
         <a href="/users/forgot">Forgot Password ?</a>
 
