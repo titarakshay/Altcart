@@ -140,11 +140,26 @@ table {
 }
 
 .login-div {
-  margin: 50px 500px;
+  max-width: 560px;
+  margin: 50px auto;
   border: 1px solid black;
   padding: 16px;
-  display: inline-block;
+  /* display: inline-block; */
   text-align: center;
+}
+.forgot-link {
+  margin: 20px 0;
+}
+@media all and (max-width: 560px) {
+  .login-div {
+    max-width: 340px;
+    margin: 50px auto;
+  }
+}
+.login-h2 {
+  font-size: 32px;
+  margin: 12px 0;
+  color: #45a049;
 }
 .input {
   width: 300px;

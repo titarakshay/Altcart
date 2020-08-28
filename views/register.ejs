@@ -1,20 +1,34 @@
 <%- include('partials/header')-%>
-<div class="form-group login-div">
+<div class="login-div">
     <div class="login-heading">
 
-        <h2>Create A New User</h2>
+        <h2 class="login-h2">Create A New User</h2>
     </div>
-<form action="/users/register" method="post">
-    <input class="input" type="text" name="name" id="" placeholder="Enter Your Name">
-    <input class="input" type="email" name="email" id="" placeholder="Enter Your Email">
-    <input class="input" type="password" name="password" id="" placeholder="Enter Your Password">
-    <% if(msg) {%>
+    <form action="/users/register" method="post">
+        <div class="form-group">
+
+            <input class="form-control" type="text" name="name" id="" placeholder="Enter Your Name">
+        </div>
+        <div class="form-group">
+
+            <input class="form-control" type="email" name="email" id="" placeholder="Enter Your Email">
+        </div>
+        <div class="form-group">
+
+            <input class="form-control" type="password" name="password" id="" placeholder="Enter Your Password">
+        </div>
+        <% if(msg) {%>
         <h2><%= msg%></h2>
-    <%}%>
+        <%}%>
     <div class="login-btns">
 
         <button class="btn btn-success" class="input" type="submit">Create</button>
         <button class="btn btn-light" type="reset">Reset</button>
+        
     </div>
+    <h4 class="forgot-link">
+
+        <a  href="/users/login">Already have account Sign In</a>
+    </h4>
 </form>
 </div>
