@@ -8,7 +8,9 @@ passport.use(
     {
       clientID: process.env.ClientID,
       clientSecret: process.env.Client_Secret,
-      callbackURL: "https://altcart-app.herokuapp.com/auth/github/callback",
+      callbackURL:
+        // "/auth/github/callback",
+        "https://altcart-app.herokuapp.com/auth/github/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       if (profile._json.email == "titarakshay@gmail.com") {

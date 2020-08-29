@@ -128,7 +128,7 @@ router.post("/register", async (req, res, next) => {
     var mailOptions = {
       from: process.env.Gmail_username,
       to: req.body.email,
-      subject: `Verification code is ${code}`,
+      subject: `altcart Shopping verification `,
       text: `Verification code is ${code}`,
     };
 
@@ -199,7 +199,9 @@ router.get("/forgot", async (req, res, next) => {
   try {
     let list = await Product.distinct("category");
     var cart = await Cart.findOne({ userId: req.user.id });
-    res.render("forgot", { list, cart });
+    req.flash("msg", "your verification code is sent to your email");
+    var msg = req.flash("msg");
+    res.render("forgot", { list, cart, msg });
   } catch (error) {
     next(error);
   }
@@ -208,6 +210,8 @@ router.get("/forgot", async (req, res, next) => {
 router.post("/forgot", async (req, res, next) => {
   try {
     let list = await Product.distinct("category");
+    var cart = await Cart.findOne({ userId: req.user.id });
+
     console.log(req.body);
     var code = Math.floor(Math.random() * 1000000);
     var transporter = nodemailer.createTransport(
@@ -240,7 +244,7 @@ router.post("/forgot", async (req, res, next) => {
       { email: req.body.email },
       { code: req.body.code }
     );
-    res.render("code", { user, list });
+    res.render("code", { user, list, cart });
   } catch (error) {
     next(error);
   }
