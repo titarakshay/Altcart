@@ -14,7 +14,7 @@
         <div>
 
             <h2 class="product-name"><%=product.name%></h2>
-            <h3 class="price"><%=product.price%></h3>
+            <h3 class="price">₹<%=product.price%></h3>
             <%if(userInfo && !userInfo.isAdmin){%>
             <a class="link-block" href="/<%=product.id%>/favorite">Favorite</a>
             <%}%>
@@ -45,8 +45,8 @@
             <% product.reviews.forEach(c=>{ %>
             <div class="comment-div">
                 <div class="content-comments">
-                    <span class="user-comment">UserName:  <%= c.user.name%></span>
-                    <span class="user-name">Comment :  <%=c.content%></span>
+                    <span class="user-comment">UserName: <%= c.user.name%></span>
+                    <span class="user-name">Comment : <%=c.content%></span>
                     <%= console.log(c)%>
                     <% if(c.user.id == userInfo.id) { %>
                     <a class="edit-comment link-block" href="/<%=product.id%>/reviews/<%=c.id%>/edit">Edit</a>

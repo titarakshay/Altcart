@@ -1,19 +1,22 @@
 <%- include('partials/header') -%>
 
 <%if(msg){%>
-    <h2 class="result"><%=msg%></h2>
-    <%}%>
+<h2 class="result"><%=msg%></h2>
+<%}%>
 
 <div class=" container2 products-div">
     <% products.map(p=> {%>
-        <div class="item-div">
-            <div class="img-div">
-               <a href="/<%=p.id%>"><img src="/uploads/<%=p.image%>" alt=""></a>
-            </div>
-            <a  href="/<%=p.id%>"><h2 class="product-name"><%=p.name%></h2></a>
-            
-            
-        </div>
-            <%})%>
-    
+
+
+<div class="card" style="width: 18rem;">
+    <a href="/<%=p.id%>"><img src="/uploads/<%=p.image%>" class="card-img-top" alt=""></a>
+
+    <a href="/<%=p.id%>">
+        <h5 class="card-title"><%=p.name%></h5>
+    </a>
+
+
+</div>
+<%})%>
+
 </div>

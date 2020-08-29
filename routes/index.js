@@ -202,15 +202,22 @@ router.get("/qtyminus/:productid", async (req, res, next) => {
     if (req.session.userId) {
       var productName = await Product.findById(req.params.productid);
       var cart = await Cart.findOne({ userId: req.user.id });
-      console.log(cart.id, "cart id is here", productName.id);
-      var item = await Item.findOne({ item: productName.id, cart: cart.id });
-      var item = await Item.findByIdAndUpdate(item.id, { $inc: { qty: -1 } });
+      var item2 = await Item.findOne({ item: productName.id, cart: cart.id });
+      var item = await Item.findByIdAndUpdate(
+        item2.id,
+        { $inc: { qty: -1 } },
+        { new: true }
+      );
+      if (item.qty === 0) {
+        var updatecart = await Cart.findByIdAndUpdate(item.cart, {
+          $pull: { itemList: item.id },
+        });
+      }
       var product = await Product.findByIdAndUpdate(
         productName.id,
         { $inc: { qty: 1 } },
         { new: true }
       );
-      console.log(item, "user id");
       req.flash("msg", "Add successfully");
       res.redirect(`/${req.user.id}/mycart`);
     } else {
@@ -228,9 +235,10 @@ router.get("/:id/mycart", async (req, res, next) => {
 
   var cart = await Cart.findOne({ userId: req.user.id });
 
-  var mycart = await Item.find({ cart: cart.id })
+  var mycart2 = await Item.find({ cart: cart.id })
     .populate("item", "name price image category")
     .exec();
+  var mycart = await mycart2.filter((p) => p.qty > 0);
   var msg = req.flash("msg");
   res.render("mycart", { mycart, list, cart, msg });
 });

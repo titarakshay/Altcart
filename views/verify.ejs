@@ -1,10 +1,12 @@
 <%- include('partials/header')-%>
+<div class="container">
 
-<%if(msg){%>
-<h2><%=msg%></h2>
-<%}%>
-<form action="/users/<%=user.id%>/verify" method="post">
-<input type="text" name="code" id="" placeholder="Enter your code">
-<button type="submit">submit</button>
-</form>
-<a href="/users/verify/<%=user.id%>/resend">Resend</a>
+    <%if(msg){%>
+    <h2 class="result"><%=msg%></h2>
+    <%}%>
+        <form action="/users/<%=user.id%>/verify" method="post" style="margin: 20px 0;">
+    <input type="text" name="code" id="" placeholder="Enter your code">
+    <button type="submit">submit</button>
+    </form>
+    <a class="resend-btn btn btn-secondary" style="margin:20px" href="/users/verify/<%=user.id%>/resend">Resend</a>
+</div>
